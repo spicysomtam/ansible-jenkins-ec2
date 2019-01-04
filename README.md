@@ -106,5 +106,11 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=8    changed=3    unreachable=0    failed=0   
 ```
 
+# Things to consider after deploy
+
+* Make the root volume larger; 8Gb is a bit small for Jenkins so a better size might be 20Gb.
+* Switch to a more powerful instance type; `t2.small` with 2Gb of memory just allows Jenkins to run. Consider at least a `t3.medium` (`t3's` are cheaper than `t2's` and have more cores; `medium` gives 4Gb of memory).
+* Backup your instance regularly to protect against bad plugin/jenkins upgrades; as mentioned the Lifecycle Manager is a good way to do it.
+* Integrate your Jenkins with ldap or Active Directory to simplify user management.
 
 
