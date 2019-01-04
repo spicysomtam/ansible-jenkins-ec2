@@ -2,7 +2,17 @@
 
 Deploy a Jenkins instance to ec2 using ansible. 
 
-Just deploys an instance; not a launch config/scaling group, since once Jenkins is up and running, you will need to configure it, install plugins, setup jobs, etc. What I mean is it cannot be autoscaled; once deployed you need to snapshot it regularly (back it up) so you can recover it in event of corruptions, bad plugins, bad upgrades, etc. Use the Lifecycle Manager which is an excellent way of doing regular snapshots.
+Noteable points:
+
+* Deploys to localhost, which uses the ansible ec2 cloud modules (boto) to interact with aws.
+* Jenkins setup on ec2 instance uses ec2 `userdata` to run an install script to install java and jenkins.
+* Ec2 `userdata` could have used ansible; but this over complcates the solution?
+* Follows the devops ideas on creating and destroying a stack.
+* Playbooks are used to deploy and destroy the stack. Since ansible cannot be played in reverse we need a playbook to deploy and another to destroy.
+* Each included yaml file includes plays for state `present` and `absent` so they can be called from the deploy and destroy playbooks.
+* Terraform is a much better tool for this, but it was requested to be done in ansible.
+
+Just deploys an instance; not a launch config/scaling group, since once Jenkins is up and running, you will need to configure it, install plugins, setup jobs, etc. What I mean is it cannot be autoscaled at will.
 
 # Deploying jenkins
 
