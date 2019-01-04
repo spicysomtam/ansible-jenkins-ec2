@@ -1,0 +1,32 @@
+- name: create jenkins instance
+  ec2_instance:
+    name: "{{ inst_tag }}"
+    image_id: "{{ ami }}"
+    instance_type: "{{ inst_type }}"
+    security_groups:
+      - "{{ stack }}-http"
+      - "{{ stack }}-ssh"
+    user_data: "{{ lookup('file','./userdata.sh') }}"
+    key_name: "{{ key_name }}"
+    network:
+      assign_public_ip: yes
+    tags:
+      Name: "{{ inst_tag }}"
+    state: "{{ state }}"
+  when: state == 'present'
+
+- name: rm jenkins instance running
+  ec2_instance:
+    filters: 
+      "tag:Name": "{{ inst_tag }}"
+      instance-state-name: running
+    state: "{{ state }}"
+  when: state == 'absent'
+
+- name: rm jenkins instance stopped
+  ec2_instance:
+    filters: 
+      "tag:Name": "{{ inst_tag }}"
+      instance-state-name: stopped
+    state: "{{ state }}"
+  when: state == 'absent'

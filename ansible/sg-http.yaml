@@ -1,0 +1,25 @@
+- name: create sg {{ stack }}-http
+  ec2_group:
+    name: "{{ stack }}-http"
+    description: Allows http port 8080 access.
+    tags: "{'Name': '{{ stack }}-http'}"
+    rules:
+      - proto: tcp
+        from_port: 8080
+        to_port: 8080
+        cidr_ip:
+          - 0.0.0.0/0
+    rules_egress:
+      - proto: -1
+        from_port: 0
+        to_port: 0
+        cidr_ip:
+          - 0.0.0.0/0
+    state: "{{ state }}"
+  when: state == "present"
+
+- name: rm sg {{ stack }}-http
+  ec2_group:
+    name: "{{ stack }}-http"
+    state: "{{ state }}"
+  when: state == "absent"

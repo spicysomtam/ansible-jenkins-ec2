@@ -1,0 +1,25 @@
+---
+- name: Deploy jenkins ec2 instance
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    state: present
+
+  vars_files:
+    - vars/app.yaml
+
+  tasks:
+  - name: fact stack={{ app }}
+    set_fact:
+      stack: "{{ app }}"
+
+  - include_tasks:
+      file: ansible/sg-ssh.yaml
+
+  - include_tasks:
+      file: ansible/sg-http.yaml
+
+  - include_tasks:
+      file: ansible/jenkins-ec2.yaml

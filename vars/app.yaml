@@ -1,0 +1,11 @@
+---
+# stack name:
+app: jenkins
+# Instance Name tag
+inst_tag: Jenkins
+# ec2 ssh key to use:
+key_name: sugar-test-key
+# amazon 2 image ami; this will vary per region; this is for eu-west-1:
+ami: ami-0a5e707736615003c
+# ec2 instance type:
+inst_type: t2.small
