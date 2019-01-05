@@ -123,4 +123,13 @@ localhost                  : ok=8    changed=3    unreachable=0    failed=0
 * Backup your instance regularly to protect against bad plugin/jenkins upgrades; as mentioned the Lifecycle Manager is a good way to do it.
 * Integrate your Jenkins with ldap or Active Directory to simplify user management.
 
+# Jenkins pipeline
 
+Added a `Jenkinsfile` to allow this to be deployed via Jenkins. This might be a chicken and egg scenario! However you might have another Jenkins where you can deploy it.
+
+Your Jenkins will need the following:
+
+* aws Jenkins plugin.
+* ansible Jenkins plugin.
+* ansible 2.7 installed.
+* python botocore and boto3.

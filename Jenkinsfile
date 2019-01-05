@@ -18,10 +18,11 @@ pipeline {
   
   stages {
 
-    stage('Action') {
+    stage('Perform action') {
       steps {
         script {
           currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action
+
           ansiblePlaybook(
             playbook: "${params.action}.yaml",
             inventory: 'localhost,',
@@ -30,6 +31,7 @@ pipeline {
             extraVars: [
               key_name: params.key_name
             ])
+
         }
       }
     }
