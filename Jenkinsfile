@@ -10,7 +10,7 @@ pipeline {
   options {
     disableConcurrentBuilds()
     timeout(time: 1, unit: 'HOURS')
-    withAWS(region: region, credentials: aws_cred)
+    withAWS(region: params.region, credentials: params.aws_cred)
     buildDiscarder(logRotator(numToKeepStr: '5'))
     ansiColor('xterm')
   }
