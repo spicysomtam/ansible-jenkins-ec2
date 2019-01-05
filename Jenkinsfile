@@ -21,6 +21,7 @@ pipeline {
     stage('Action') {
       steps {
         script {
+          currentBuild.displayName = "#" + env.BUILD_NUMBER + " " + params.action
           ansiblePlaybook(
             playbook: "${params.action}.yaml",
             inventory: 'localhost,',
