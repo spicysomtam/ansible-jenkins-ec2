@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     string(name: 'aws_cred', defaultValue: 'jenkins', description: 'Aws credential')
-    string(name: 'region', defaultValue: 'eu-west-1, description: 'aws region')
+    string(name: 'region', defaultValue: 'eu-west-1', description: 'aws region')
     choice(name: 'action', choices: ['deploy', 'destroy'], description: 'Deploy or destroy the stack.')
   }
 
