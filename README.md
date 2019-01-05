@@ -133,3 +133,4 @@ Your Jenkins will need the following:
 * ansible Jenkins plugin.
 * ansible 2.7 installed.
 * python botocore and boto3.
+* aws credential in Jenkins to access aws.
