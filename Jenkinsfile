@@ -24,11 +24,11 @@ pipeline {
           ansiblePlaybook(
             playbook: "${params.action}.yaml",
             inventory: 'localhost,',
+            colorized: true,
             extras: '-c local',
             extraVars: [
               key_name: params.key_name
-            ]
-            colorized: true)
+            ])
         }
       }
     }
