@@ -23,7 +23,7 @@ pipeline {
           ansiblePlaybook(
             playbook: "${params.action}.yaml",
             inventory: 'localhost,',
-            extraVars: '-c local',
+            extraVars: ['-c local'],
             colorized: true)
         }
       }
